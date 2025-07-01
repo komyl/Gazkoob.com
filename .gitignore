@@ -1,0 +1,36 @@
+# WordPress
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/backup-db/
+/wp-content/cache/
+/wp-content/backups/
+/wp-content/advanced-cache.php
+/wp-content/wp-cache-config.php
+/_wpeprivate/
+
+# Ignore sensitive WordPress files
+wp-config.php
+.htaccess
+
+# Ignore local development files and folders
+node_modules/
+npm-debug.log
+.DS_Store
+.idea/
+.vscode/
+
+# Ignore log and database files
+*.log
+*.sql
+*.sql.gz
+
+# Ignore backup and archive files
+*.zip
+*.tar
+*.gz
+*.rar
+*.bak
+
+# Ignore API keys or secret files if any
+# For example, if you have a file named keys.php
+# keys.php
