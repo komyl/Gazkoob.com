@@ -28,7 +28,12 @@
 
     <div class="copyright">
     © <?php echo date('Y'); ?> تمام حقوق برای مجموعه گازکوب محفوظ است
-</div>
+    </div>
+
+    <!-- Site Credit Section Updated -->
+    <div class="site-credit">
+        Designed & Developed by <a href="https://komyl.com" target="_blank" rel="noopener noreferrer">Komeyl Kalhorinia</a>
+    </div>
 </footer>
 
 <?php wp_footer(); ?>

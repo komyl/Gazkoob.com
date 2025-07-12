@@ -845,6 +845,27 @@ body {
     overflow: hidden;
 }
 
+.site-credit {
+    text-align: center;
+    padding: 20px 20px 10px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #666; /* A subtle, darker grey */
+    border-top: 1px solid #222; /* A subtle separator line */
+    direction: ltr; /* Ensure English text displays correctly */
+}
+
+.site-credit a {
+    color: #888; /* A slightly lighter grey for the link */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.site-credit a:hover {
+    color: #e74c3c; /* Brand color on hover */
+}
+
+
 @media (max-width: 992px) {
     .contact-content-area { grid-template-columns: 1fr; }
 }
@@ -940,15 +961,34 @@ body {
     font-weight: 700;
 }
 
+.banner-phone-container {
+    margin-bottom: 25px;
+    height: 65px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-phone-static {
+    display: block;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    height: 30px; /* Reserve space */
+}
+
 .banner-phone {
     display: block;
     color: #ccc;
     font-size: 22px;
     font-weight: 500;
-    margin-bottom: 25px;
     text-decoration: none;
-    direction: ltr; /* Ensure number displays correctly */
-    height: 30px; /* To prevent layout shift */
+    direction: ltr;
+    height: 30px; /* Reserve space */
     letter-spacing: 2px;
 }
 
@@ -964,6 +1004,9 @@ body {
 }
 
 @media (max-width: 576px) {
+    .banner-phone-static {
+        font-size: 20px;
+    }
     .banner-phone {
         font-size: 18px;
     }

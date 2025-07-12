@@ -13,7 +13,7 @@
     <?php
     // Inline Critical CSS for faster rendering
     $critical_css = "
-        .header{position:fixed;top:0;right:0;left:0;width:100%;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;background-color:rgba(17,17,17,.8);backdrop-filter:blur(5px)}.logo{font-size:24px;font-weight:700}.logo a,.nav ul li a{color:#fff;text-decoration:none}.nav ul{display:flex;list-style:none}.nav ul li{margin-right:30px}.nav ul li a{font-size:16px}.banner{height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,#1a1a1a,#000);position:relative;overflow:hidden}.banner-content{text-align:center;z-index:2;padding:20px}.animated-text{font-size:65px;font-weight:800;color:#fff;margin-bottom:20px;animation:fadeIn 1s ease-in-out}.highlight{color:#e74c3c}.banner-text{font-size:18px;color:#ddd;margin-bottom:30px;animation:fadeIn 1s ease-in-out .3s both}@media (max-width:768px){.animated-text{font-size:32px}}@media (max-width:576px){.animated-text{font-size:24px;line-height:1.4}}
+        .header{position:fixed;top:0;right:0;left:0;width:100%;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;background-color:rgba(17,17,17,.8);backdrop-filter:blur(5px)}.logo{font-size:24px;font-weight:700}.logo a,.nav ul li a{color:#fff;text-decoration:none}.nav ul{display:flex;list-style:none}.nav ul li{margin-right:30px}.nav ul li a{font-size:16px}.banner{height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,#1a1a1a,#000);position:relative;overflow:hidden}.banner-content{text-align:center;z-index:2;padding:20px}.animated-text{font-size:65px;font-weight:800;color:#fff;margin-bottom:20px;animation:fadeIn 1s ease-in-out}.highlight{color:#e74c3c}.banner-text{font-size:18px;color:#ddd;margin-bottom:20px}@media (max-width:768px){.animated-text{font-size:32px}}@media (max-width:576px){.animated-text{font-size:24px;line-height:1.4}}
     ";
     echo '<style>' . preg_replace('/\s+/', ' ', trim($critical_css)) . '</style>';
 
@@ -50,9 +50,13 @@
     <div class="animated-bg" id="animatedBg"></div>
     <div class="banner-content">
         <h1 class="animated-text">گازکوب | <span class="highlight">کاور و سرامیک خودرو</span></h1>
-        <p class="banner-text">مجموعه کاور و سرامیک خودرو گازکوب،<span class="mobile-break"><br></span> ارائه دهنده خدمات حرفه‌ای با بهترین کیفیت</p>
         
-        <a id="typing-phone" class="banner-phone" href="tel:05132100000"></a>
+        <p class="banner-text">ارائه دهنده خدمات تخصصی سرامیک، کاور و صافکاری PDR در مشهد</p>
+        
+        <div class="banner-phone-container">
+            <a id="typing-phone-mobile" class="banner-phone-static" href="tel:09154300200"></a>
+            <a id="typing-phone-landline" class="banner-phone" href="tel:05132100000"></a>
+        </div>
 
         <div class="banner-buttons">
             <a href="<?php echo esc_url(home_url('/contact')); ?>" class="btn">تماس با ما</a>

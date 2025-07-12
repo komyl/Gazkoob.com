@@ -4,7 +4,6 @@
 (function($) {
     'use strict';
     
-    // Animated Background
     function createParticles() {
         const bg = document.getElementById('animatedBg');
         if (!bg) return;
@@ -25,7 +24,6 @@
         }
     }
     
-    // Header scroll effect
     function headerScroll() {
         const header = $('.header');
         $(window).scroll(function() {
@@ -37,7 +35,6 @@
         });
     }
     
-    // Load More Posts
     function loadMorePosts() {
         const loadMoreBtn = $('#load-more');
         loadMoreBtn.on('click', function() {
@@ -52,9 +49,7 @@
                     nonce: gazkoob_ajax.load_more_nonce,
                     page: currentPage
                 },
-                beforeSend: function() {
-                    button.text('در حال بارگذاری...');
-                },
+                beforeSend: function() { button.text('در حال بارگذاری...'); },
                 success: function(response) {
                     if (response) {
                         $('.portfolio-grid').append(response);
@@ -72,21 +67,18 @@
         });
     }
 
-    // AJAX Consultation Form Submission
     function handleConsultationForms() {
         $(document).on('submit', '.popup-form form, .post-consultation-form form', function(e) {
             e.preventDefault(); 
             const form = $(this);
             const button = form.find('.btn-submit');
             const originalButtonText = button.html();
-            
             let successContainer;
             if (form.closest('.popup-container').length > 0) {
                 successContainer = form.closest('.popup-content');
             } else {
                 successContainer = form.closest('.post-consultation-form');
             }
-
             $.ajax({
                 url: gazkoob_ajax.ajax_url,
                 type: 'POST',
@@ -106,8 +98,7 @@
                                 <div class="success-icon">✓</div>
                                 <h4>درخواست شما ثبت شد!</h4>
                                 <p>کارشناسان ما در اسرع وقت با شما تماس خواهند گرفت.</p>
-                            </div>
-                        `;
+                            </div>`;
                         successContainer.html(successHtml);
                     } else {
                         alert(response.data.message || 'خطایی رخ داد. لطفاً دوباره تلاش کنید.');
@@ -121,34 +112,45 @@
             });
         });
     }
-
-    // Typing Animation for Phone Number
-    function initTypingAnimation() {
-        const phoneElement = document.getElementById('typing-phone');
-        if (!phoneElement) return;
-
-        const phoneNumber = '05132100000';
+    
+    // Reusable Typing Animation Function
+    function typeWriter(element, text, speed, onComplete) {
         let i = 0;
-        
-        phoneElement.innerHTML = '<span class="blinking-cursor">|</span>';
+        element.innerHTML = '<span class="blinking-cursor">|</span>'; // Start with a cursor
 
         const typingInterval = setInterval(() => {
-            if (i < phoneNumber.length) {
-                phoneElement.innerHTML = phoneNumber.substring(0, i + 1) + '<span class="blinking-cursor">|</span>';
+            if (i < text.length) {
+                element.innerHTML = text.substring(0, i + 1) + '<span class="blinking-cursor">|</span>';
                 i++;
             } else {
                 clearInterval(typingInterval);
-                // The 2-second timeout is now removed.
-                const cursor = phoneElement.querySelector('.blinking-cursor');
-                if(cursor) {
-                    // Hide the cursor immediately after typing is finished.
-                    cursor.style.display = 'none';
+                element.innerHTML = text; // Remove cursor at the end
+                if (onComplete) {
+                    onComplete(); // Callback when typing is done
                 }
             }
-        }, 150);
+        }, speed);
+    }
+
+    // Initialize all typing animations in sequence
+    function initTypingSequences() {
+        const mobilePhoneEl = document.getElementById('typing-phone-mobile');
+        const landlinePhoneEl = document.getElementById('typing-phone-landline');
+
+        if (mobilePhoneEl && landlinePhoneEl) {
+            const mobileNumber = '0915-4300-200';
+            const landlineNumber = '051-321-000-00';
+
+            // Start typing the first number
+            typeWriter(mobilePhoneEl, mobileNumber, 100, () => {
+                // When the first is complete, start typing the second
+                setTimeout(() => {
+                    typeWriter(landlinePhoneEl, landlineNumber, 150);
+                }, 500); // 0.5-second delay between numbers
+            });
+        }
     }
     
-    // Lazy Load for Map Iframes
     function lazyLoadMaps() {
         const lazyMaps = Array.from(document.querySelectorAll('iframe.lazy-map'));
         if (lazyMaps.length === 0) return;
@@ -167,14 +169,13 @@
             lazyMaps.forEach(function(map) {
                 mapObserver.observe(map);
             });
-        } else { // Fallback for older browsers
+        } else { 
             lazyMaps.forEach(function(map) {
                 map.src = map.dataset.src;
             });
         }
     }
 
-    // Run all initializations on page load
     $(document).ready(function() {
         createParticles();
         headerScroll();
@@ -182,8 +183,7 @@
         handleConsultationForms();
         lazyLoadMaps();
         
-        // Start typing animation after a delay
-        setTimeout(initTypingAnimation, 2000); 
+        setTimeout(initTypingSequences, 2000); 
     });
     
 })(jQuery);
