@@ -12,7 +12,7 @@
             <h3>اطلاعات تماس</h3>
             <p class="contact-info"><?php echo get_theme_mod('gazkoob_address', 'آدرس:خراسان رضوی، مشهد، اندیشه 75، مجموعه گازکوب'); ?></p>
             <p class="contact-info">تلفن همراه: <a href="tel:<?php echo preg_replace('/[^0-9]/', '', get_theme_mod('gazkoob_phone', '09154300200')); ?>" style="color: inherit; text-decoration: none;"><?php echo get_theme_mod('gazkoob_phone', '09154300200'); ?></a></p>
-            <p class="contact-info">تلفن ثابت: <a href="tel:05132100000" style="color: inherit; text-decoration: none;">05132100000</a></p>
+            <p class="contact-info">تلفن ثابت: <a href="tel:05132100000" style="color: inherit; text-decoration: none;">051-321-000-00</a></p>
             <p class="contact-info">ایمیل: <a href="mailto:<?php echo get_theme_mod('gazkoob_email', 'info@gazkoob.com'); ?>" style="color: inherit; text-decoration: none;"><?php echo get_theme_mod('gazkoob_email', 'info@gazkoob.com'); ?></a></p>
         </div>
     </div>
@@ -26,13 +26,12 @@
         </div>
     </div>
 
-    <div class="copyright">
-    © <?php echo date('Y'); ?> تمام حقوق برای مجموعه گازکوب محفوظ است
-    </div>
-
-    <!-- Site Credit Section Updated -->
     <div class="site-credit">
         Designed & Developed by <a href="https://komyl.com" target="_blank" rel="noopener noreferrer">Komeyl Kalhorinia</a>
+    </div>
+
+    <div class="copyright">
+        © <?php echo date('Y'); ?> تمام حقوق برای مجموعه گازکوب محفوظ است
     </div>
 </footer>
 

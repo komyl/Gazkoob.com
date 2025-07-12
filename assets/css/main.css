@@ -115,10 +115,15 @@ body {
 .banner-text {
     font-size: 18px;
     color: #ddd;
-    margin-bottom: 20px; /* Adjusted margin */
+    margin-bottom: 20px;
     animation: fadeIn 1s ease-in-out 0.3s both;
     margin-left: auto;
     margin-right: auto;
+}
+
+.banner-text .highlight-location {
+    font-weight: 700;
+    color: #f1c40f;
 }
 
 .btn {
@@ -334,7 +339,7 @@ body {
 
 .footer {
     background-color: #111;
-    padding: 60px 0 30px;
+    padding: 60px 0 0; /* Adjusted padding */
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -358,12 +363,29 @@ body {
 }
 
 .copyright {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 0;
+    border-top: 1px solid #222;
     text-align: center;
     color: #888;
     font-size: 14px;
+}
+
+.site-credit {
+    padding: 15px 20px;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    direction: ltr;
+}
+
+.site-credit a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.site-credit a:hover {
+    color: #e74c3c;
 }
 
 .popup-overlay {
@@ -622,7 +644,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 25px; /* Adjusted margin */
+    margin-top: 25px;
 }
 
 .banner-buttons .btn,
@@ -700,6 +722,11 @@ body {
     to { opacity: 1; transform: translate(-50%, 0); }
 }
 
+@keyframes blink {
+    from, to { color: transparent; }
+    50% { color: #e74c3c; }
+}
+
 @media (max-width: 768px) {
     .mobile-break {
         display: block;
@@ -707,7 +734,7 @@ body {
     .portfolio-grid { max-width: 90%; }
     .animated-text { font-size: 32px; }
     .banner-text {
-        max-width: 600px;
+        max-width: 95%;
     }
     .single-post { margin-top: 100px; }
     .entry-title { font-size: 28px; }
@@ -736,6 +763,8 @@ body {
     }
     .entry-title { font-size: 24px; }
     .entry-header, .entry-content, .entry-footer { padding: 20px; }
+    .banner-phone-static { font-size: 20px; }
+    .banner-phone { font-size: 18px; }
 }
 
 .contact-page-wrapper {
@@ -845,27 +874,6 @@ body {
     overflow: hidden;
 }
 
-.site-credit {
-    text-align: center;
-    padding: 20px 20px 10px;
-    margin-top: 20px;
-    font-size: 13px;
-    color: #666; /* A subtle, darker grey */
-    border-top: 1px solid #222; /* A subtle separator line */
-    direction: ltr; /* Ensure English text displays correctly */
-}
-
-.site-credit a {
-    color: #888; /* A slightly lighter grey for the link */
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.site-credit a:hover {
-    color: #e74c3c; /* Brand color on hover */
-}
-
-
 @media (max-width: 992px) {
     .contact-content-area { grid-template-columns: 1fr; }
 }
@@ -963,51 +971,37 @@ body {
 
 .banner-phone-container {
     margin-bottom: 25px;
-    height: 65px; 
+    height: 65px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.banner-phone-static {
+.banner-phone-static,
+.banner-phone {
     display: block;
+    text-decoration: none;
+    letter-spacing: 1px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.banner-phone-static {
     color: #fff;
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 10px;
-    text-decoration: none;
-    letter-spacing: 1px;
-    height: 30px; /* Reserve space */
 }
 
 .banner-phone {
-    display: block;
     color: #ccc;
     font-size: 22px;
     font-weight: 500;
-    text-decoration: none;
     direction: ltr;
-    height: 30px; /* Reserve space */
-    letter-spacing: 2px;
 }
 
 .blinking-cursor {
     font-weight: bold;
     color: #e74c3c;
     animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-    from, to { color: transparent; }
-    50% { color: #e74c3c; }
-}
-
-@media (max-width: 576px) {
-    .banner-phone-static {
-        font-size: 20px;
-    }
-    .banner-phone {
-        font-size: 18px;
-    }
 }

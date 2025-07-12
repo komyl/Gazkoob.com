@@ -5,7 +5,7 @@
  * @package Gazkoob
  */
 
-define('GAZKOOB_VERSION', '1.1.2'); // Performance Update Version
+define('GAZKOOB_VERSION', '1.2'); // Stable Version Revert
 
 function gazkoob_setup() {
     load_theme_textdomain('gazkoob', get_template_directory() . '/languages');
@@ -31,6 +31,8 @@ function gazkoob_setup() {
 add_action('after_setup_theme', 'gazkoob_setup');
 
 function gazkoob_scripts() {
+    // Re-enable the standard and reliable way of loading the main stylesheet.
+    wp_enqueue_style('gazkoob-style', get_template_directory_uri() . '/assets/css/main.css', array(), GAZKOOB_VERSION);
     
     // Dequeue and re-register a modern version of jQuery
     wp_deregister_script('jquery');

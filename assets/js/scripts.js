@@ -4,6 +4,7 @@
 (function($) {
     'use strict';
     
+    // Creates the animated particle background
     function createParticles() {
         const bg = document.getElementById('animatedBg');
         if (!bg) return;
@@ -24,6 +25,7 @@
         }
     }
     
+    // Adds a 'scrolled' class to the header on scroll
     function headerScroll() {
         const header = $('.header');
         $(window).scroll(function() {
@@ -35,6 +37,7 @@
         });
     }
     
+    // Handles the "Load More" functionality for posts via AJAX
     function loadMorePosts() {
         const loadMoreBtn = $('#load-more');
         loadMoreBtn.on('click', function() {
@@ -49,7 +52,9 @@
                     nonce: gazkoob_ajax.load_more_nonce,
                     page: currentPage
                 },
-                beforeSend: function() { button.text('در حال بارگذاری...'); },
+                beforeSend: function() {
+                    button.text('در حال بارگذاری...');
+                },
                 success: function(response) {
                     if (response) {
                         $('.portfolio-grid').append(response);
@@ -67,18 +72,21 @@
         });
     }
 
+    // Handles AJAX submission for all consultation forms
     function handleConsultationForms() {
         $(document).on('submit', '.popup-form form, .post-consultation-form form', function(e) {
             e.preventDefault(); 
             const form = $(this);
             const button = form.find('.btn-submit');
             const originalButtonText = button.html();
+            
             let successContainer;
             if (form.closest('.popup-container').length > 0) {
                 successContainer = form.closest('.popup-content');
             } else {
                 successContainer = form.closest('.post-consultation-form');
             }
+
             $.ajax({
                 url: gazkoob_ajax.ajax_url,
                 type: 'POST',
@@ -112,11 +120,11 @@
             });
         });
     }
-    
+
     // Reusable Typing Animation Function
-    function typeWriter(element, text, speed, onComplete) {
+    function typeWriter(element, text, speed) {
         let i = 0;
-        element.innerHTML = '<span class="blinking-cursor">|</span>'; // Start with a cursor
+        element.innerHTML = '<span class="blinking-cursor">|</span>';
 
         const typingInterval = setInterval(() => {
             if (i < text.length) {
@@ -125,32 +133,26 @@
             } else {
                 clearInterval(typingInterval);
                 element.innerHTML = text; // Remove cursor at the end
-                if (onComplete) {
-                    onComplete(); // Callback when typing is done
-                }
             }
         }, speed);
     }
 
-    // Initialize all typing animations in sequence
-    function initTypingSequences() {
+    // Initializes the typing animations for phone numbers
+    function initTypingAnimations() {
         const mobilePhoneEl = document.getElementById('typing-phone-mobile');
         const landlinePhoneEl = document.getElementById('typing-phone-landline');
 
         if (mobilePhoneEl && landlinePhoneEl) {
-            const mobileNumber = '0915-4300-200';
-            const landlineNumber = '051-321-000-00';
+            const mobileNumber = '۰۹۱۵-۴۳۰۰-۲۰۰';
+            const landlineNumber = '۰۵۱-۳۲۱-۰۰۰-۰۰';
 
-            // Start typing the first number
-            typeWriter(mobilePhoneEl, mobileNumber, 100, () => {
-                // When the first is complete, start typing the second
-                setTimeout(() => {
-                    typeWriter(landlinePhoneEl, landlineNumber, 150);
-                }, 500); // 0.5-second delay between numbers
-            });
+            // Start typing both numbers simultaneously
+            typeWriter(mobilePhoneEl, mobileNumber, 120);
+            typeWriter(landlinePhoneEl, landlineNumber, 120);
         }
     }
     
+    // Lazy loads map iframes when they enter the viewport
     function lazyLoadMaps() {
         const lazyMaps = Array.from(document.querySelectorAll('iframe.lazy-map'));
         if (lazyMaps.length === 0) return;
@@ -169,13 +171,14 @@
             lazyMaps.forEach(function(map) {
                 mapObserver.observe(map);
             });
-        } else { 
+        } else { // Fallback for older browsers
             lazyMaps.forEach(function(map) {
                 map.src = map.dataset.src;
             });
         }
     }
 
+    // Run all initializations on page load
     $(document).ready(function() {
         createParticles();
         headerScroll();
@@ -183,7 +186,8 @@
         handleConsultationForms();
         lazyLoadMaps();
         
-        setTimeout(initTypingSequences, 2000); 
+        // Start typing animation after a delay
+        setTimeout(initTypingAnimations, 1500); 
     });
     
 })(jQuery);
