@@ -121,6 +121,11 @@ body {
     margin-right: auto;
 }
 
+.banner-text .highlight {
+    font-weight: 700;
+    color: #f1c40f; /* A golden color to stand out */
+}
+
 .btn {
     display: inline-block;
     background-color: #b83227;
@@ -847,22 +852,21 @@ body {
 
 .site-credit {
     text-align: center;
-    padding: 20px 20px 10px;
-    margin-top: 20px;
+    padding-top: 30px; /* More space from maps */
+    margin-bottom: -15px; /* Pull copyright up slightly */
     font-size: 13px;
     color: #666; /* A subtle, darker grey */
-    border-top: 1px solid #222; /* A subtle separator line */
-    direction: ltr; /* Ensure English text displays correctly */
+    direction: ltr;
 }
 
 .site-credit a {
     color: #888; /* A slightly lighter grey for the link */
-    text-decoration: none;
+    text-decoration: none; 
     transition: color 0.3s;
 }
 
 .site-credit a:hover {
-    color: #e74c3c; /* Brand color on hover */
+    color: #e74c3c;
 }
 
 
@@ -963,7 +967,7 @@ body {
 
 .banner-phone-container {
     margin-bottom: 25px;
-    height: 65px; 
+    height: 65px;
     display: flex;
     flex-direction: column;
     align-items: center;
